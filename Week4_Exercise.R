@@ -44,7 +44,16 @@ cat_num
 summary(cat_num)
 plot(cat_num)
 
-Churn_Train %>%
-  eda_web_report(target = "Total.Charges", subtitle = " Churn_Train",
-                 output_dir = "./", output_file = "EDA.html", theme = "orange")
+library(dlookr)
+
+
+# Create an EDA report
+report <- eda_paged_report(Churn_Train)
+
+# Output the report as an HTML file (you can change the format to 'pdf' if needed)
+output_file <- "Churn_EDA_Report.html"
+paged_report_output(report, output_file)
+
+# Print the location of the generated report file
+cat("Static EDA report saved as:", output_file, "\n")
 
